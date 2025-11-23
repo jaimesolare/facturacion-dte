@@ -1,0 +1,20 @@
+import os
+import pytest
+import sys
+
+# Asegurar que src esté en el path (aunque pytest.ini lo hace, esto refuerza)
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), 'src')))
+
+# Configurar variables de entorno ANTES de cualquier importación de lógica de aplicación
+os.environ["ENCRYPTION_KEY"] = "8TRMxPaCBjYkfRngic51U85BGBm-d_HzbctvzSNZuKE="
+os.environ["DATABASE_URL"] = "sqlite:///:memory:"
+os.environ["MH_NIT"] = "00000000000000"
+os.environ["MH_API_KEY"] = "test"
+os.environ["MH_PRIVATE_KEY_PASSWORD"] = "test"
+os.environ["MH_PRIVATE_KEY_PATH"] = "dummy_path.p12"
+os.environ["MH_PUBLIC_KEY_PATH"] = "dummy_path.pem"
+
+@pytest.fixture(scope="session", autouse=True)
+def set_test_env():
+    # Ya configurado arriba, pero mantenemos el fixture por si acaso se necesita resetear o algo
+    pass

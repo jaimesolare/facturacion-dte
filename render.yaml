@@ -1,0 +1,31 @@
+services:
+  - type: web
+    name: facturacion-dte-api
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn --config gunicorn_conf.py src.main:app
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
+      - key: DATABASE_URL
+        fromDatabase:
+          name: facturacion-db
+          property: connectionString
+      - key: ENCRYPTION_KEY
+        generateValue: true
+      - key: MH_NIT
+        value: 00000000000000
+      - key: MH_API_KEY
+        value: placeholder_api_key
+      - key: MH_PRIVATE_KEY_PASSWORD
+        value: placeholder_password
+      - key: MH_PRIVATE_KEY_PATH
+        value: certs/private_key.p12
+      - key: MH_PUBLIC_KEY_PATH
+        value: certs/public_key.pem
+
+databases:
+  - name: facturacion-db
+    databaseName: dte_db
+    user: dte_user
+    plan: free

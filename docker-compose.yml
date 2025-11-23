@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    container_name: dte-api
+    command: gunicorn --config gunicorn_conf.py src.main:app
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/dte_db
+    depends_on:
+      - db
+    networks:
+      - dte-network
+
+  db:
+    image: postgres:15-alpine
+    container_name: dte-db
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=dte_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - dte-network
+
+volumes:
+  postgres_data:
+
+
+networks:
+  dte-network:
+    driver: bridge

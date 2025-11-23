@@ -1,0 +1,106 @@
+openapi: 3.0.0
+info:
+  title: Sistema de Emisión de DTE - API Interna
+  description: API interna para gestionar la emisión de Documentos Tributarios Electrónicos (DTE) en El Salvador.
+  version: 1.0.0
+
+paths:
+  /dte:
+    post:
+      summary: Emitir un nuevo DTE
+      description: Crea, firma y transmite un nuevo DTE al Ministerio de Hacienda. La respuesta es asíncrona; este endpoint inicia el proceso.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tipo_dte:
+                  type: string
+                  description: "Código del tipo de DTE a emitir (e.g., '01' para Factura)."
+                datos_dte:
+                  type: object
+                  description: "El cuerpo JSON del DTE que cumple con el esquema del MH."
+      responses:
+        '202':
+          description: Proceso de emisión aceptado. El DTE está siendo procesado.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  codigo_generacion:
+                    type: string
+                    format: uuid
+                    description: "El Código de Generación del DTE que se está procesando."
+                  estado:
+                    type: string
+                    example: "PROCESANDO"
+
+  /dte/{codigo_generacion}:
+    get:
+      summary: Consultar el estado de un DTE
+      description: Recupera el estado actual y los detalles de un DTE específico usando su Código de Generación.
+      parameters:
+        - name: codigo_generacion
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Estado del DTE.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTEResponse'
+        '404':
+          description: DTE no encontrado.
+
+  /dte/{codigo_generacion}/invalidate:
+    post:
+      summary: Invalidar un DTE
+      description: Inicia el proceso de invalidación (anulación) para un DTE que ya fue aceptado por el MH.
+      parameters:
+        - name: codigo_generacion
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                motivo:
+                  type: string
+                  description: "Motivo de la invalidación, según el catálogo oficial del MH."
+      responses:
+        '202':
+          description: Solicitud de invalidación aceptada y en proceso.
+
+components:
+  schemas:
+    DTEResponse:
+      type: object
+      properties:
+        codigo_generacion:
+          type: string
+          format: uuid
+        numero_control:
+          type: string
+        sello_recepcion:
+          type: string
+        estado:
+          type: string
+          example: "RECIBIDO"
+        fecha_emision:
+          type: string
+          format: date-time
+        documento_json:
+          type: object

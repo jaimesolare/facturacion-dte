@@ -10,7 +10,9 @@ class Settings(BaseSettings):
     # Credenciales para la API del Ministerio de Hacienda
     MH_NIT: str = "TU_NIT"
     MH_API_KEY: str = "TU_API_KEY_PASSWORD"
+    MH_API_KEY: str = "TU_API_KEY_PASSWORD"
     MH_PRIVATE_KEY_PASSWORD: str = "TU_CLAVE_P12"
+    MH_AMBIENTE: str = "00"  # "00"=Pruebas, "01"=Producción
     
     # Rutas a los archivos de firma (usar rutas absolutas o relativas al proyecto)
     MH_PRIVATE_KEY_PATH: str = "certs/private_key.p12"

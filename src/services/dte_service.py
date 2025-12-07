@@ -104,7 +104,7 @@ def generar_json_factura(db: Session, datos_factura: schemas.FacturaCreateSchema
     # --- 3. Ensamblaje del DTE completo ---
     dte_payload = {
         "identificacion": {
-            "version": 3, "ambiente": "00", "tipoDte": "01",
+            "version": 3, "ambiente": settings.MH_AMBIENTE, "tipoDte": "01",
             "numeroControl": numero_control,
             "codigoGeneracion": str(uuid.uuid4()).upper(),
             "tipoModelo": 1, "tipoOperacion": 1, "tipoContingencia": None,

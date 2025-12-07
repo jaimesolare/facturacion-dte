@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos | Facturación Electrónica</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <i class="fa-solid fa-file-invoice-dollar"></i>
+                Facturación DTE
+            </div>
+            <nav class="nav-menu">
+                <a href="/" class="nav-link">
+                    <i class="fa-solid fa-house"></i> Inicio
+                </a>
+                <a href="/emitir" class="nav-link">
+                    <i class="fa-solid fa-plus-circle"></i> Emitir DTE
+                </a>
+                <a href="/ventas" class="nav-link">
+                    <i class="fa-solid fa-file-invoice"></i> Ventas
+                </a>
+                <a href="/compras" class="nav-link">
+                    <i class="fa-solid fa-cart-shopping"></i> Compras
+                </a>
+                <a href="/pos" class="nav-link">
+                    <i class="fa-solid fa-cash-register"></i> Punto de Venta
+                </a>
+
+                <!-- Main Content -->
+                <div class="main-content">
+                    <header>
+                        <h1>Gestión de Productos</h1>
+                    </header>
+
+                    <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 2rem;">
+                        <!-- Form -->
+                        <section class="card">
+                            <h2><i class="fa-solid fa-plus"></i> Nuevo Producto</h2>
+                            <form id="productoForm">
+                                <div class="form-group">
+                                    <label for="prodCodigo">Código</label>
+                                    <input type="text" id="prodCodigo" required placeholder="Ej: PROD-001">
+                                </div>
+                                <div class="form-group">
+                                    <label for="prodNombre">Nombre del Producto</label>
+                                    <input type="text" id="prodNombre" required
+                                        placeholder="Ej: Servicio de Consultoría">
+                                </div>
+                                <div class="form-group">
+                                    <label for="prodPrecio">Precio Unitario ($)</label>
+                                    <input type="number" id="prodPrecio" step="0.01" required placeholder="0.00">
+                                </div>
+                                <button type="submit" class="btn-primary">
+                                    <i class="fa-solid fa-save"></i> Guardar Producto
+                                </button>
+                                <div id="productoStatus" class="status-message"></div>
+                            </form>
+                        </section>
+
+                        <!-- List -->
+                        <section class="card">
+                            <h2><i class="fa-solid fa-list"></i> Catálogo Actual</h2>
+                            <div id="productosList" style="max-height: 500px; overflow-y: auto;">
+                                <!-- Products will be loaded here -->
+                            </div>
+                        </section>
+                    </div>
+                </div>
+    </div>
+
+    <script src="/static/js/app.js"></script>
+</body>
+
+</html>

@@ -25,6 +25,7 @@ def test_numero_a_letras_decimales():
     assert _numero_a_letras(Decimal("100.99")) == "US 100 DOLARES CON 99/100 USD"
     assert _numero_a_letras(Decimal("0.01")) == "US 0 DOLARES CON 01/100 USD"
     print("OK")
+    
 
 def test_calculo_totales_factura():
     print("Testing calculo_totales_factura...", end="")

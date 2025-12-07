@@ -47,3 +47,12 @@ class Serie(Base):
     tipo_dte = Column(String(2), nullable=False, index=True)
     serie = Column(String(10), nullable=False)
     correlativo_actual = Column(Integer, nullable=False, server_default='0')
+
+class Producto(Base):
+    __tablename__ = "productos"
+
+    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    codigo = Column(String, unique=True, nullable=False, index=True)
+    nombre = Column(String, nullable=False)
+    precio_unitario = Column(Numeric(10, 2), nullable=False)
+    tipo_item = Column(Integer, default=1, nullable=False) # 1=Bien, 2=Servicio

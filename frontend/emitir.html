@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emitir DTE | Facturación Electrónica</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <i class="fa-solid fa-file-invoice-dollar"></i>
+                Facturación DTE
+            </div>
+            <nav class="nav-menu">
+                <a href="/" class="nav-link">
+                    <i class="fa-solid fa-house"></i> Inicio
+                </a>
+                <a href="/emitir" class="nav-link active">
+                    <i class="fa-solid fa-plus-circle"></i> Emitir DTE
+                </a>
+                <a href="/ventas" class="nav-link">
+                    <i class="fa-solid fa-file-invoice"></i> Ventas
+                </a>
+                <a href="/compras" class="nav-link">
+                    <i class="fa-solid fa-cart-shopping"></i> Compras
+                </a>
+                <a href="/pos" class="nav-link">
+                    <i class="fa-solid fa-cash-register"></i> Punto de Venta
+                </a>
+
+                <!-- Main Content -->
+                <div class="main-content">
+                    <header>
+                        <h1>Emitir Nuevo DTE</h1>
+                    </header>
+
+                    <section class="card">
+                        <form id="emitirForm">
+                            <!-- Sección Receptor -->
+                            <h3
+                                style="font-size: 1.1rem; margin-bottom: 1rem; color: var(--accent-color); border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;">
+                                <i class="fa-solid fa-user"></i> 1. Datos del Receptor
+                            </h3>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                                <div class="form-group">
+                                    <label for="recNit">NIT (sin guiones)</label>
+                                    <input type="text" id="recNit" required placeholder="06140101211000" maxlength="14">
+                                </div>
+                                <div class="form-group">
+                                    <label for="recNombre">Nombre / Razón Social</label>
+                                    <input type="text" id="recNombre" required placeholder="Juan Pérez">
+                                </div>
+                                <div class="form-group">
+                                    <label for="recCodAct">Cód. Actividad</label>
+                                    <input type="text" id="recCodAct" required value="10005" placeholder="Ej: 10005">
+                                </div>
+                                <div class="form-group">
+                                    <label for="recDescAct">Desc. Actividad</label>
+                                    <input type="text" id="recDescAct" required value="Otros Servicios"
+                                        placeholder="Ej: Servicios Varios">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="recDireccion">Dirección Completa</label>
+                                <input type="text" id="recDireccion" required placeholder="Calle Principal #123">
+                            </div>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                                <div class="form-group">
+                                    <label for="recDepto">Departamento</label>
+                                    <select id="recDepto" required>
+                                        <option value="">Seleccione...</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="recMuni">Municipio</label>
+                                    <select id="recMuni" required disabled>
+                                        <option value="">Seleccione Departamento primero</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="recEmail">Email</label>
+                                <input type="email" id="recEmail" placeholder="cliente@email.com">
+                            </div>
+
+                            <!-- Sección Ítems -->
+                            <h3
+                                style="font-size: 1.1rem; margin: 2rem 0 1rem 0; color: var(--accent-color); border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;">
+                                <i class="fa-solid fa-cart-shopping"></i> 2. Detalle de Ítems
+                            </h3>
+
+                            <!-- Datalist for Products -->
+                            <datalist id="productOptions"></datalist>
+
+                            <table style="margin-bottom: 1.5rem;">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 80px;">Cant</th>
+                                        <th>Descripción (Buscar Producto)</th>
+                                        <th style="width: 120px;">Precio ($)</th>
+                                        <th style="width: 120px;">Total</th>
+                                        <th style="width: 50px;"></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="itemsTableBody">
+                                    <!-- Rows will be added here -->
+                                </tbody>
+                            </table>
+                            <button type="button" id="btnAddItem" class="btn-primary"
+                                style="background-color: transparent; border: 1px dashed var(--accent-color); color: var(--accent-color); margin-bottom: 1.5rem;">
+                                <i class="fa-solid fa-plus"></i> Agregar Ítem
+                            </button>
+
+                            <!-- Totales -->
+                            <div
+                                style="text-align: right; margin-bottom: 2rem; padding: 1rem; background: #f9fafb; border-radius: 0.5rem;">
+                                <strong style="font-size: 1.5rem; color: var(--text-primary);">Total a Pagar: $<span
+                                        id="totalPagar">0.00</span></strong>
+                            </div>
+
+                            <button type="submit" class="btn-primary" style="font-size: 1.1rem;">
+                                <i class="fa-solid fa-paper-plane"></i> Generar Factura
+                            </button>
+                            <div id="emitirStatus" class="status-message"></div>
+                        </form>
+                    </section>
+                </div>
+    </div>
+
+    <script src="/static/js/app.js"></script>
+</body>
+
+</html>

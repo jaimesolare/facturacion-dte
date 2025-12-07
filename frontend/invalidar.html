@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invalidar DTE | Facturación Electrónica</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <i class="fa-solid fa-file-invoice-dollar"></i>
+                Facturación DTE
+            </div>
+            <nav class="nav-menu">
+                <a href="/" class="nav-link">
+                    <i class="fa-solid fa-house"></i> Inicio
+                </a>
+                <a href="/emitir" class="nav-link">
+                    <i class="fa-solid fa-plus-circle"></i> Emitir DTE
+                </a>
+                <a href="/ventas" class="nav-link">
+                    <i class="fa-solid fa-file-invoice"></i> Ventas
+                </a>
+                <a href="/compras" class="nav-link">
+                    <i class="fa-solid fa-cart-shopping"></i> Compras
+                </a>
+                <a href="/pos" class="nav-link">
+                    <i class="fa-solid fa-cash-register"></i> Punto de Venta
+                </a>
+
+                <!-- Main Content -->
+                <div class="main-content">
+                    <header>
+                        <h1>Invalidación de Documentos</h1>
+                    </header>
+
+                    <section class="card">
+                        <h2 style="color: var(--danger-color); border-bottom-color: var(--danger-color);">
+                            <i class="fa-solid fa-triangle-exclamation"></i> Anular DTE
+                        </h2>
+                        <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
+                            Utilice esta opción para anular un documento ya transmitido a Hacienda. Esta acción es
+                            irreversible.
+                        </p>
+                        <form id="invalidarForm">
+                            <div class="form-group">
+                                <label for="codigoGen">Código de Generación (UUID)</label>
+                                <input type="text" id="codigoGen" required
+                                    placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx">
+                            </div>
+                            <div class="form-group">
+                                <label for="motivo">Motivo de Invalidación</label>
+                                <textarea id="motivo" rows="4" required
+                                    placeholder="Explique detalladamente la razón de la anulación..."></textarea>
+                            </div>
+                            <button type="submit" class="btn-danger">
+                                <i class="fa-solid fa-trash-can"></i> Proceder a Invalidar
+                            </button>
+                            <div id="invalidarStatus" class="status-message"></div>
+                        </form>
+                    </section>
+                </div>
+    </div>
+
+    <script src="/static/js/app.js"></script>
+</body>
+
+</html>

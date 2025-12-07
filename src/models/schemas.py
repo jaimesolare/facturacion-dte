@@ -73,3 +73,15 @@ class DTEResponse(BaseModel):
 
 class InvalidateRequest(BaseModel):
     motivo: str
+
+class ProductoCreate(BaseModel):
+    codigo: str
+    nombre: str
+    precio_unitario: float
+    tipo_item: int = 1
+
+class ProductoResponse(ProductoCreate):
+    id: UUID
+
+    class Config:
+        from_attributes = True

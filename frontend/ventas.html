@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ventas | Facturación Electrónica</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <i class="fa-solid fa-file-invoice-dollar"></i>
+                Facturación DTE
+            </div>
+            <nav class="nav-menu">
+                <a href="/" class="nav-link">
+                    <i class="fa-solid fa-house"></i> Inicio
+                </a>
+                <a href="/emitir" class="nav-link">
+                    <i class="fa-solid fa-plus-circle"></i> Emitir DTE
+                </a>
+                <a href="/ventas" class="nav-link active">
+                    <i class="fa-solid fa-file-invoice"></i> Ventas
+                </a>
+                <a href="/compras" class="nav-link">
+                    <i class="fa-solid fa-cart-shopping"></i> Compras
+                </a>
+                <a href="/pos" class="nav-link">
+                    <i class="fa-solid fa-cash-register"></i> Punto de Venta
+                </a>
+
+                <!-- Main Content -->
+                <div class="main-content">
+                    <header>
+                        <h1>Historial de Ventas</h1>
+                    </header>
+
+                    <section class="card">
+                        <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem;">
+                            <input type="text" placeholder="Buscar por Cliente o Código..." style="flex: 1;">
+                            <select>
+                                <option value="">Todos los Estados</option>
+                                <option value="PROCESADO">Procesado</option>
+                                <option value="INVALIDADO">Invalidado</option>
+                            </select>
+                            <button class="btn-primary">Filtrar</button>
+                        </div>
+
+                        <table style="margin-top: 1rem;">
+                            <thead>
+                                <tr>
+                                    <th>Código Generación</th>
+                                    <th>Fecha</th>
+                                    <!DOCTYPE html>
+                                    <html lang="es">
+
+                                    <head>
+                                        <meta charset="UTF-8">
+                                        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                                        <title>Ventas | Facturación Electrónica</title>
+                                        <link rel="stylesheet" href="/static/css/styles.css">
+                                        <link
+                                            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+                                            rel="stylesheet">
+                                        <link rel="stylesheet"
+                                            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+                                    </head>
+
+                                    <body>
+                                        <div class="app-container">
+                                            <!-- Sidebar -->
+                                            <aside class="sidebar">
+                                                <div class="logo">
+                                                    <i class="fa-solid fa-file-invoice-dollar"></i>
+                                                    Facturación DTE
+                                                </div>
+                                                <nav class="nav-menu">
+                                                    <a href="/" class="nav-link">
+                                                        <i class="fa-solid fa-house"></i> Inicio
+                                                    </a>
+                                                    <a href="/emitir" class="nav-link">
+                                                        <i class="fa-solid fa-plus-circle"></i> Emitir DTE
+                                                    </a>
+                                                    <a href="/ventas" class="nav-link active">
+                                                        <i class="fa-solid fa-file-invoice"></i> Ventas
+                                                    </a>
+                                                    <a href="/compras" class="nav-link">
+                                                        <i class="fa-solid fa-cart-shopping"></i> Compras
+                                                    </a>
+                                                    <a href="/pos" class="nav-link">
+                                                        <i class="fa-solid fa-cash-register"></i> Punto de Venta
+                                                    </a>
+                                                    <a href="/lotes" class="nav-link">
+                                                        <i class="fa-solid fa-layer-group"></i> Fact. por Lotes
+                                                    </a>
+                                                    <a href="/invalidar" class="nav-link">
+                                                        <i class="fa-solid fa-ban"></i> Invalidar
+                                                    </a>
+                                                    <a href="/productos" class="nav-link">
+                                                        <i class="fa-solid fa-box"></i> Productos
+                                                    </a>
+                                                    <a href="/reportes" class="nav-link">
+                                                        <i class="fa-solid fa-chart-line"></i> Reportes
+                                                    </a>
+                                                </nav>
+                                            </aside>
+
+                                            <!-- Main Content -->
+                                            <div class="main-content">
+                                                <header>
+                                                    <h1>Historial de Ventas</h1>
+                                                </header>
+
+                                                <section class="card">
+                                                    <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem;">
+                                                        <input type="text" placeholder="Buscar por Cliente o Código..."
+                                                            style="flex: 1;">
+                                                        <select>
+                                                            <option value="">Todos los Estados</option>
+                                                            <option value="PROCESADO">Procesado</option>
+                                                            <option value="INVALIDADO">Invalidado</option>
+                                                        </select>
+                                                        <button class="btn-primary">Filtrar</button>
+                                                    </div>
+
+                                                    <table style="margin-top: 1rem;">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Código Generación</th>
+                                                                <th>Fecha</th>
+                                                                <th>Cliente</th>
+                                                                <th>Total</th>
+                                                                <th>Estado</th>
+                                                                <th>Acciones</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="ventasTableBody">
+                                                            <!-- Will be populated by JS -->
+                                                            <tr>
+                                                                <td colspan="6"
+                                                                    style="text-align: center; color: var(--text-secondary); padding: 2rem;">
+                                                                    Cargando ventas...
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </section>
+                                            </div>
+                                        </div>
+                                        <script src="/static/js/app.js"></script>
+                                    </body>
+
+                                    </html>

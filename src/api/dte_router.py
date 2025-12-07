@@ -65,3 +65,10 @@ async def invalidate_dte_endpoint(codigo_generacion: uuid.UUID, invalidation_in:
         return {"message": "Invalidation request accepted and is being processed."}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+@router.get("/dte", response_model=list[schemas.DTEResponse])
+def list_dtes_endpoint(limit: int = 100, db: Session = Depends(get_db)):
+    """
+    Get a list of recent DTEs.
+    """
+    return dte_repository.get_all_dtes(db, limit=limit)

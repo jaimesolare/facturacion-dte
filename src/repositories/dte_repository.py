@@ -91,3 +91,6 @@ def update_dte_status(db: Session, db_dte: db_models.DTE, new_status: str) -> db
     db.commit()
     db.refresh(db_dte)
     return db_dte
+
+def get_all_dtes(db: Session, limit: int = 100):
+    return db.query(db_models.DTE).order_by(db_models.DTE.fecha_emision.desc()).limit(limit).all()
